@@ -33,6 +33,12 @@
 		
 	$searchBooking = $db->select($query);
 	
+	if(isset($_POST['submit'])){
+		$query = "DELETE FROM bookings 
+				  WHERE ('$booking_id' == booking_id);";
+	    $db->delete($query);
+	}
+
 	
 ?>
 <div class="container">
@@ -54,9 +60,12 @@
 				<br/>
 				Duration: <?php echo $row['duration'];?>hr<br/>
 				Occupants: <?php echo $row['occupants'];?></a></p>
+				
 				<div class="card-action">
+				<form role="form" method="post" action="bookings.php">
 					<a href="#">Cancel</a>
 					<a href="#">Change</a>
+					</form>
 				</div>
 		</div>
     </div>
